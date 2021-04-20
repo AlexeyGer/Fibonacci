@@ -61,6 +61,9 @@
     <Compile Include="Controllers\SequenceController.cs" />
     <Compile Include="Interfaces\IFibonacciSequenceMaker.cs" />
     <Compile Include="Interfaces\IFibonacciSequence.cs" />
+    <Compile Include="Interfaces\IParser.cs" />
+    <Compile Include="Interfaces\ISequenceViewer.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="Models\FibonacciSequence.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

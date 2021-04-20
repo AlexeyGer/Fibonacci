@@ -11,6 +11,11 @@ namespace Fibonacci.Models
 	{
 		public List<int> Sequence { get; set; }
 
+		public FibonacciSequence (IFibonacciSequenceMaker maker)
+		{
+			Sequence = maker.MakingSequence;
+		}
+
 		public IEnumerator<int> GetEnumerator()
 		{
 			for (int i = 0; i < Sequence.Count; i++)

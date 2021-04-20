@@ -9,11 +9,14 @@ namespace Fibonacci.Services
 
 		static int previousNumber = 0;
 		static int currentNumber = 1;
-		int[] FIRST_AND_SECOND_NUMBERS = new int[] { previousNumber, currentNumber };
+		static int[] FIRST_AND_SECOND_NUMBERS = new int[] { previousNumber, currentNumber };
 
-		public FibonacciSequenceMaker(double minRangeValue, double maxRangeValue)
+		public FibonacciSequenceMaker(IParser parser)
 		{
 			MakingSequence = new List<int>();
+
+			double minRangeValue = parser.MinRangeValue;
+			double maxRangeValue = parser.MaxRangeValue;
 
 			for (int i = 0; i < FIRST_AND_SECOND_NUMBERS.Length; i++)
 			{

@@ -1,17 +1,23 @@
 ﻿using System;
+using Fibonacci.Interfaces;
 
 namespace Fibonacci.Services
 {
-	public class Parser
+	public class Parser : IParser
 	{
-		public double minRangeValue;
-		public double maxRangeValue;
+		public double MinRangeValue { get; set; }
+		public double MaxRangeValue { get; set; }
 
-		public Parser(string[] inputArgs)
+		public Parser(string[] inputArgs, IValidator validator)
+		{
+			Parse(inputArgs, validator);
+		}
+
+		public void Parse(string[] inputArgs, IValidator validator)
 		{
 			double[] parsedArgs = new double[2];
 
-			if (Validator.FormatValidation(inputArgs, out string[] validArgs))
+			if (validator.FormatValidation(inputArgs, out string[] validArgs))
 			{
 				for (int i = 0; i < validArgs.Length; i++)
 				{
@@ -19,17 +25,16 @@ namespace Fibonacci.Services
 				}
 			}
 
-			if (Validator.PositiveValidation(parsedArgs, out double[] validPositiveArgs))
+			if (validator.PositiveValidation(parsedArgs, out double[] validPositiveArgs))
 			{
-				if (validPositiveArgs[0] < validPositiveArgs[1])
+				if (validPositiveArgs[0] != validPositiveArgs[1])
 				{
-					minRangeValue = validPositiveArgs[0];
-					maxRangeValue = validPositiveArgs[1];
+					MinRangeValue = Math.Min(validPositiveArgs[0], validPositiveArgs[1]);
+					MaxRangeValue = Math.Max(validPositiveArgs[0], validPositiveArgs[1]);
 				}
 				else
 				{
-					minRangeValue = validPositiveArgs[1];
-					maxRangeValue = validPositiveArgs[0];
+					MinRangeValue = MaxRangeValue = validPositiveArgs[0];
 				}
 			}
 		}
